@@ -15,8 +15,9 @@ public class CategoriaService {
 	private CategoriaRepository categoriaRepository;
 
 	public Categoria createCategoria(Categoria c) {
-		categoriaRepository.save(c);
-		return c;
+
+		return categoriaRepository.save(c);
+		
 	}
 
 	public Categoria updateCategoria(Categoria c) {
@@ -24,8 +25,7 @@ public class CategoriaService {
 
 		categoriaBase.setNome(c.getNome());
 
-		categoriaRepository.save(categoriaBase);
-		return categoriaBase;
+		return categoriaRepository.save(categoriaBase);
 	}
 
 	public Categoria readCategoria(String idCategoria) {

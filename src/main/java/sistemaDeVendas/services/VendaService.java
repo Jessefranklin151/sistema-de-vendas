@@ -15,8 +15,9 @@ public class VendaService {
 	public VendaRepository vendaRepository;
 
 	public Venda createVenda(Venda v) {
-		vendaRepository.save(v);
-		return v;
+		
+		return vendaRepository.save(v);
+		
 	}
 
 	public Venda updateVenda(Venda v) {
@@ -27,8 +28,7 @@ public class VendaService {
 		vendaBase.setPedidos(v.getPedidos());
 		vendaBase.setValorTotal(v.getValorTotal());
 
-		vendaRepository.save(vendaBase);
-		return vendaBase;
+		return vendaRepository.save(vendaBase);
 	}
 
 	public Venda readVenda(String idVenda) {

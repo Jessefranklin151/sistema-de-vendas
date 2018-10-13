@@ -13,32 +13,35 @@ public class FornecedorService {
 
 	@Autowired
 	private FornecedorRepository fornecedorRepository;
-	
-	public void createFornecedor(Fornecedor f) {
-		fornecedorRepository.save(f);
+
+	public Fornecedor createFornecedor(Fornecedor f) {
+
+		return fornecedorRepository.save(f);
+
 	}
-	
-	public void updateFornecedor(Fornecedor f) {
-		Fornecedor fornecedorBase = readFornecedor(f);
+
+	public Fornecedor updateFornecedor(Fornecedor f) {
+		Fornecedor fornecedorBase = readFornecedor(f.getId());
 
 		fornecedorBase.setCnpj(f.getCnpj());
 		fornecedorBase.setDataDeContrato(f.getDataDeContrato());
 		fornecedorBase.setEmail(f.getEmail());
 		fornecedorBase.setNome(f.getNome());
 		fornecedorBase.setTelefone(f.getTelefone());
-		
-		fornecedorRepository.save(fornecedorBase);
+
+		return fornecedorRepository.save(fornecedorBase);
 	}
 
-	public Fornecedor readFornecedor(Fornecedor f) {
-		return fornecedorRepository.findById(f.getId()).get();
+	public Fornecedor readFornecedor(String idFornecedor) {
+		return fornecedorRepository.findById(idFornecedor).get();
 	}
-	
+
 	public ArrayList<Fornecedor> readAll() {
 		return (ArrayList<Fornecedor>) fornecedorRepository.findAll();
 	}
-	
-	public void removeFornecedor(Fornecedor f) {
+
+	public Fornecedor removeFornecedor(Fornecedor f) {
 		fornecedorRepository.deleteById(f.getId());
+		return f;
 	}
 }

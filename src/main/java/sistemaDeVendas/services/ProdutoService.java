@@ -15,8 +15,9 @@ public class ProdutoService {
 	private ProdutoRepository produtoRepository;
 
 	public Produto createProduto(Produto p) {
-		produtoRepository.save(p);
-		return p;
+
+		return produtoRepository.save(p);
+
 	}
 
 	public Produto updateProduto(Produto p) {
@@ -28,9 +29,8 @@ public class ProdutoService {
 		produtoBase.setQuantidade(p.getQuantidade());
 		produtoBase.setValor(p.getValor());
 
-		produtoRepository.save(produtoBase);
+		return produtoRepository.save(produtoBase);
 
-		return produtoBase;
 	}
 
 	public Produto readProduto(String idProduto) {

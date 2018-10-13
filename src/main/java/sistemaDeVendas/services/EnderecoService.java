@@ -14,12 +14,14 @@ public class EnderecoService {
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 
-	public void createEndereco(Endereco e) {
-		enderecoRepository.save(e);
+	public Endereco createEndereco(Endereco e) {
+		
+		return enderecoRepository.save(e);
+		
 	}
 
-	public void updateEndereco(Endereco e) {
-		Endereco enderecoBase = readEndereco(e);
+	public Endereco updateEndereco(Endereco e) {
+		Endereco enderecoBase = readEndereco(e.getId());
 
 		enderecoBase.setBairro(e.getBairro());
 		enderecoBase.setCidade(e.getCidade());
@@ -27,19 +29,20 @@ public class EnderecoService {
 		enderecoBase.setNumero(e.getNumero());
 		enderecoBase.setRua(e.getRua());
 
-		enderecoRepository.save(enderecoBase);
+		return enderecoRepository.save(enderecoBase);
 	}
 
-	public Endereco readEndereco(Endereco e) {
-		return enderecoRepository.findById(e.getId()).get();
+	public Endereco readEndereco(String idEndereco) {
+		return enderecoRepository.findById(idEndereco).get();
 	}
 
 	public ArrayList<Endereco> readAll() {
 		return (ArrayList<Endereco>) enderecoRepository.findAll();
 	}
 
-	public void removeEndereco(Endereco e) {
+	public Endereco removeEndereco(Endereco e) {
 		enderecoRepository.deleteById(e.getId());
+		return e;
 	}
 
 }

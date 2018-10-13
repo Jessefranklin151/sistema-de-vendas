@@ -5,41 +5,43 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sistemaDeVendas.domains.Pedido;
 import sistemaDeVendas.domains.Produto;
-import sistemaDeVendas.repositorys.ProdutoRepository;
+import sistemaDeVendas.repositorys.PedidoRepository;
 
 @Service
 public class PedidoService {
 
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private PedidoRepository pedidoRepository;
 
-	public void creatProduto(Produto p) {
-		produtoRepository.save(p);
-	}
-
-	public void updateProduto(Produto p) {
-		Produto produtoBase = readProduto(p);
-
-		produtoBase.setCategoria(p.getCategoria());
-		produtoBase.setMarca(p.getMarca());
-		produtoBase.setNome(p.getNome());
-		produtoBase.setQuantidade(p.getQuantidade());
-		produtoBase.setValor(p.getValor());
-
-		produtoRepository.save(produtoBase);
+	public Pedido creatPedido(Pedido p) {
+		
+		return pedidoRepository.save(p);
 
 	}
 
-	public Produto readProduto(Produto p) {
-		return produtoRepository.findById(p.getId()).get();
+	public Pedido updatePedido(Pedido p) {
+		Pedido pedidoBase = readPedido(p.getId());
+
+		pedidoBase.setProduto(p.getProduto());
+		pedidoBase.setQuantidade(p.getQuantidade());
+		pedidoBase.setValorTotalPedido(p.getValorTotalPedido());
+
+		return pedidoRepository.save(pedidoBase);
+
 	}
-	
-	public ArrayList<Produto> readAll() {
-		return (ArrayList<Produto>) produtoRepository.findAll();
+
+	public Pedido readPedido(String idPedido) {
+		return pedidoRepository.findById(idPedido).get();
 	}
-	
-	public void removeProduto(Produto p) {
-		produtoRepository.deleteById(p.getId());
+
+	public ArrayList<Pedido> readAll() {
+		return (ArrayList<Pedido>) pedidoRepository.findAll();
 	}
- }
+
+	public Pedido removePedido(Pedido p) {
+		pedidoRepository.deleteById(p.getId());
+		return p;
+	}
+}

@@ -14,28 +14,32 @@ public class MarcaService {
 	@Autowired
 	private MarcaRepository marcaRepository;
 
-	public void createMarca(Marca m) {
-		marcaRepository.save(m);
+	public Marca createMarca(Marca m) {
+		
+		return marcaRepository.save(m);
+		
 	}
 
-	public void updateMarca(Marca m) {
-		Marca marcaBase = readMarca(m);
+	public Marca updateMarca(Marca m) {
+		Marca marcaBase = readMarca(m.getId());
 
 		marcaBase.setFornecedor(m.getFornecedor());
 		marcaBase.setNome(m.getNome());
 
-		marcaRepository.save(marcaBase);
+		return marcaRepository.save(marcaBase);
+		
 	}
 
-	public Marca readMarca(Marca m) {
-		return marcaRepository.findById(m.getId()).get();
+	public Marca readMarca(String idMarca) {
+		return marcaRepository.findById(idMarca).get();
 	}
 
 	public ArrayList<Marca> readAll() {
 		return (ArrayList<Marca>) marcaRepository.findAll();
 	}
 
-	public void removeMarca(Marca m) {
+	public Marca removeMarca(Marca m) {
 		marcaRepository.deleteById(m.getId());
+		return m;
 	}
 }

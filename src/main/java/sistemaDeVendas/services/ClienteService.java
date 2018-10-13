@@ -14,29 +14,32 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	public void createCliente(Cliente c) {
-		clienteRepository.save(c);
+	public Cliente createCliente(Cliente c) {
+		
+		return clienteRepository.save(c);
+		
 	}
 	
-	public void updateCliente(Cliente c) {
-		Cliente clienteBase = readCliente(c);
+	public Cliente updateCliente(Cliente c) {
+		Cliente clienteBase = readCliente(c.getId());
 	
 		clienteBase.setEndereco(c.getEndereco());
 		clienteBase.setNome(c.getNome());
 		clienteBase.setTelefone(c.getTelefone());
 
-		clienteRepository.save(clienteBase);
+		return clienteRepository.save(clienteBase);
 	}
 
-	public Cliente readCliente(Cliente c) {
-		return clienteRepository.findById(c.getId()).get();
+	public Cliente readCliente(String idCliente) {
+		return clienteRepository.findById(idCliente).get();
 	}
 	
 	public ArrayList<Cliente> readAll() {
 		return (ArrayList<Cliente>) clienteRepository.findAll();
 	}
 	
-	public void removeCliente(Cliente c) {
+	public Cliente removeCliente(Cliente c) {
 		clienteRepository.deleteById(c.getId());;
+		return c;
 	}
 }
