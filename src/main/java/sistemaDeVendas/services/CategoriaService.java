@@ -14,27 +14,30 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
-	public void createCategoria(Categoria c) {
+	public Categoria createCategoria(Categoria c) {
 		categoriaRepository.save(c);
+		return c;
 	}
 
-	public void updateCategoria(Categoria c) {
-		Categoria categoriaBase = readCategoria(c);
+	public Categoria updateCategoria(Categoria c) {
+		Categoria categoriaBase = readCategoria(c.getId());
 
 		categoriaBase.setNome(c.getNome());
 
 		categoriaRepository.save(categoriaBase);
+		return categoriaBase;
 	}
 
-	public Categoria readCategoria(Categoria c) {
-		return categoriaRepository.findById(c.getId()).get();
+	public Categoria readCategoria(String idCategoria) {
+		return categoriaRepository.findById(idCategoria).get();
 	}
 
 	public ArrayList<Categoria> readAll() {
 		return (ArrayList<Categoria>) categoriaRepository.findAll();
 	}
 
-	public void removeCategoria(Categoria c) {
+	public Categoria removeCategoria(Categoria c) {
 		categoriaRepository.deleteById(c.getId());
+		return c;
 	}
 }

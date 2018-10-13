@@ -14,12 +14,13 @@ public class VendaService {
 	@Autowired
 	public VendaRepository vendaRepository;
 
-	public void createVenda(Venda v) {
+	public Venda createVenda(Venda v) {
 		vendaRepository.save(v);
+		return v;
 	}
 
-	public void updateVenda(Venda v) {
-		Venda vendaBase = readVenda(v);
+	public Venda updateVenda(Venda v) {
+		Venda vendaBase = readVenda(v.getId());
 
 		vendaBase.setCliente(v.getCliente());
 		vendaBase.setFuncionario(v.getFuncionario());
@@ -27,18 +28,20 @@ public class VendaService {
 		vendaBase.setValorTotal(v.getValorTotal());
 
 		vendaRepository.save(vendaBase);
+		return vendaBase;
 	}
 
-	public Venda readVenda(Venda v) {
-		return vendaRepository.findById(v.getId()).get();
+	public Venda readVenda(String idVenda) {
+		return vendaRepository.findById(idVenda).get();
 	}
 
 	public ArrayList<Venda> readAll() {
 		return (ArrayList<Venda>) vendaRepository.findAll();
 	}
 
-	public void removeVenda(Venda v) {
+	public Venda removeVenda(Venda v) {
 		vendaRepository.deleteById(v.getId());
+		return v;
 	}
 
 }

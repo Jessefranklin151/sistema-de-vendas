@@ -14,12 +14,13 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	public void createProduto(Produto p) {
+	public Produto createProduto(Produto p) {
 		produtoRepository.save(p);
+		return p;
 	}
 
-	public void updateProduto(Produto p) {
-		Produto produtoBase = readProduto(p);
+	public Produto updateProduto(Produto p) {
+		Produto produtoBase = readProduto(p.getId());
 
 		produtoBase.setCategoria(p.getCategoria());
 		produtoBase.setMarca(p.getMarca());
@@ -29,18 +30,20 @@ public class ProdutoService {
 
 		produtoRepository.save(produtoBase);
 
+		return produtoBase;
 	}
 
-	public Produto readProduto(Produto p) {
-		return produtoRepository.findById(p.getId()).get();
+	public Produto readProduto(String idProduto) {
+		return produtoRepository.findById(idProduto).get();
 	}
 
 	public ArrayList<Produto> readAll() {
 		return (ArrayList<Produto>) produtoRepository.findAll();
 	}
 
-	public void removeProduto(Produto p) {
+	public Produto removeProduto(Produto p) {
 		produtoRepository.deleteById(p.getId());
+		return p;
 	}
 
 }
