@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sistemaDeVendas.domains.Pedido;
-import sistemaDeVendas.domains.Produto;
 import sistemaDeVendas.repositorys.PedidoRepository;
 
 @Service
