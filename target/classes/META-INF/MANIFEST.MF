@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Sistema De Vendas
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: jesse
+Implementation-Vendor-Id: br.com.facisa.treinamentos.projetos.vendas
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/sistemaDeVendas
+Created-By: Maven Integration for Eclipse
+
