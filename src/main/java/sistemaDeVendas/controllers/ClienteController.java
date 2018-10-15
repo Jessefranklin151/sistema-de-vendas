@@ -56,7 +56,7 @@ public class ClienteController {
 
 	}
 	
-	@GetMapping("/cliente/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> readCliente(@PathParam("id") String idCliente) {
 		
 		Cliente c = null;

@@ -56,7 +56,7 @@ public class CategoriaController {
 
 	}
 
-	@GetMapping("/categoria/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> readCategoria(@PathParam("id") String idCategoria) {
 
 		Categoria c = null;

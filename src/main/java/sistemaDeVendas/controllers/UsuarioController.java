@@ -54,7 +54,7 @@ public class UsuarioController {
 
 	}
 
-	@GetMapping("/usuario/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> readUsuario(@PathParam("id") String idUsuario) {
 
 		Usuario u = null;

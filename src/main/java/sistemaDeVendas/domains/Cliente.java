@@ -12,9 +12,7 @@ public class Cliente {
 	private Long telefone;
 	private Endereco endereco;
 
-	public Cliente(String id, String nome, Long telefone, Endereco endereco) {
-		super();
-		this.id = id;
+	public Cliente(String nome, Long telefone, Endereco endereco) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.endereco = endereco;

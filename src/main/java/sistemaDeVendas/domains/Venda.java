@@ -3,6 +3,7 @@ package sistemaDeVendas.domains;
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,7 +11,9 @@ public class Venda {
 
 	@Id
 	private String id;
+	@DBRef
 	private Cliente cliente;
+	@DBRef
 	private Funcionario funcionario;
 	private Double valorTotal;
 	private ArrayList<Pedido> pedidos;

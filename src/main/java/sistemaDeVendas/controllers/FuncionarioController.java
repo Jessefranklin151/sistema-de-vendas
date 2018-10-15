@@ -56,7 +56,7 @@ public class FuncionarioController {
 
 	}
 
-	@GetMapping("/funcionario/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Funcionario> readFornecedor(@PathParam("id") String idFuncionario) {
 
 		Funcionario f = null;

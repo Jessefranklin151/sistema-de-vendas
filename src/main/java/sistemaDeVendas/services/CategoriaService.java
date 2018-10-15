@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sistemaDeVendas.domains.Categoria;
+import sistemaDeVendas.exceptions.CategoriaInvalidaException;
+import sistemaDeVendas.exceptions.CategoriaNaoEncontradaException;
+import sistemaDeVendas.exceptions.NovaCategoriaInvalidaException;
 import sistemaDeVendas.repositorys.CategoriaRepository;
 
 @Service
@@ -14,13 +17,23 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
-	public Categoria createCategoria(Categoria c) {
-
-		return categoriaRepository.save(c);
+	public Categoria createCategoria(Categoria c) throws CategoriaInvalidaException {
+		
+		if (c.getId() != null && c.getNome() != null) {
+			return categoriaRepository.save(c);
+		}
+		
+		throw new CategoriaInvalidaException();
+		
 		
 	}
 
-	public Categoria updateCategoria(Categoria c) {
+	public Categoria updateCategoria(Categoria c) throws NovaCategoriaInvalidaException, CategoriaNaoEncontradaException {
+		
+		if (!(c.getId() != null && c.getNome() != null)) {
+			throw new NovaCategoriaInvalidaException();
+		}
+		
 		Categoria categoriaBase = readCategoria(c.getId());
 
 		categoriaBase.setNome(c.getNome());
@@ -28,7 +41,11 @@ public class CategoriaService {
 		return categoriaRepository.save(categoriaBase);
 	}
 
-	public Categoria readCategoria(String idCategoria) {
+	public Categoria readCategoria(String idCategoria) throws CategoriaNaoEncontradaException {
+		if (!categoriaRepository.findById(idCategoria).isPresent()) {
+			throw new CategoriaNaoEncontradaException();
+		}
+		
 		return categoriaRepository.findById(idCategoria).get();
 	}
 

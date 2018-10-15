@@ -55,7 +55,7 @@ public class ProdutoController {
 
 	}
 	
-	@GetMapping("/produto/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Produto> readProduto(@PathParam("id") String idProduto) {
 		
 		Produto p = null;

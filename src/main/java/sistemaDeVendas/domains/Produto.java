@@ -1,6 +1,7 @@
 package sistemaDeVendas.domains;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -9,8 +10,13 @@ public class Produto {
 	@Id
 	private String id;
 	private String nome;
+	@DBRef
 	private Marca marca;
+	
+	@DBRef
 	private Categoria categoria;
+	
+	
 	private Double valor;
 	private Integer quantidade;
 

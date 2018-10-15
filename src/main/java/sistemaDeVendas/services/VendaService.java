@@ -12,7 +12,7 @@ import sistemaDeVendas.repositorys.VendaRepository;
 public class VendaService {
 
 	@Autowired
-	public VendaRepository vendaRepository;
+	private VendaRepository vendaRepository;
 
 	public Venda createVenda(Venda v) {
 		

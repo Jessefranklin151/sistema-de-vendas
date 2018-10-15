@@ -1,13 +1,7 @@
 package sistemaDeVendas.domains;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
 public class Endereco {
 
-	@Id
-	private String id;
 	private String rua;
 	private String bairro;
 	private Short numero;
@@ -15,7 +9,6 @@ public class Endereco {
 	private String estado;
 
 	public Endereco(String rua, String bairro, Short numero, String cidade, String estado) {
-		super();
 		this.rua = rua;
 		this.bairro = bairro;
 		this.numero = numero;
@@ -61,14 +54,6 @@ public class Endereco {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 }

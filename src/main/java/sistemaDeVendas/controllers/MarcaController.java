@@ -56,7 +56,7 @@ public class MarcaController {
 
 	}
 
-	@GetMapping("/marca/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Marca> readMarca(@PathParam("id") String idMarca) {
 
 		Marca p = null;

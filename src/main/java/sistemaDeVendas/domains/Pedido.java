@@ -1,20 +1,10 @@
 package sistemaDeVendas.domains;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
 public class Pedido {
-
-	@Id
-	private String id;
+	
 	private Integer quantidade;
-	private Produto produto;
+	private Produto produto;	
 	private Double valorTotalPedido;
-
-	public String getId() {
-		return id;
-	}
 
 	public Integer getQuantidade() {
 		return quantidade;
