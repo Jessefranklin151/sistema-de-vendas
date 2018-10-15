@@ -1,6 +1,7 @@
 package sistemaDeVendas.domains;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,6 +11,7 @@ public class Funcionario {
 	private String id;
 	private String nome;
 	private String registro;
+	@DBRef
 	private Usuario usuario;
 
 	public String getId() {
