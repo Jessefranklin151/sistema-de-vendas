@@ -43,7 +43,7 @@ public class UsuarioService {
 	public Usuario readUsuario(String idUsuario) {
 
 		if (idUsuario == null) {
-			throw new IdInvalidoException("Id Usuário");
+			throw new IdInvalidoException("Usuário");
 		}
 
 		Optional<Usuario> u = usuarioRepository.findById(idUsuario);

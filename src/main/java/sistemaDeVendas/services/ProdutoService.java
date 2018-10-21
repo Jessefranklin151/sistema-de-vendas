@@ -42,7 +42,7 @@ public class ProdutoService {
 	public Produto readProduto(String idProduto) {
 		
 		if (idProduto == null) {
-			throw new IdInvalidoException("Id Produto");
+			throw new IdInvalidoException("Produto");
 		}
 		
 		Optional<Produto> p = produtoRepository.findById(idProduto);

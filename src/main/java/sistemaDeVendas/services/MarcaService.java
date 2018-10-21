@@ -43,7 +43,7 @@ public class MarcaService {
 	public Marca readMarca(String idMarca) {
 		
 		if (idMarca == null) {
-			throw new IdInvalidoException("Id Marca");
+			throw new IdInvalidoException("Marca");
 		}
 
 		Optional<Marca> m = marcaRepository.findById(idMarca);

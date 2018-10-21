@@ -43,7 +43,7 @@ public class FuncionarioService {
 	public Funcionario readFuncionario(String idFuncionario) {
 		
 		if(idFuncionario == null) {
-			throw new IdInvalidoException("Id Funcionario");
+			throw new IdInvalidoException("Funcionario");
 		}
 		
 		Optional<Funcionario> f = funcionarioRepository.findById(idFuncionario);

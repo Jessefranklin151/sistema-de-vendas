@@ -43,7 +43,7 @@ public class ClienteService {
 	public Cliente readCliente(String idCliente) {
 		
 		if (idCliente == null) {
-			throw new IdInvalidoException("id Cliente");
+			throw new IdInvalidoException("Cliente");
 		}
 
 		Optional<Cliente> c = clienteRepository.findById(idCliente);
