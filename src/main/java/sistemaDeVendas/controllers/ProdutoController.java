@@ -27,79 +27,45 @@ public class ProdutoController {
 	@PostMapping
 	public ResponseEntity<Produto> createProduto(Produto produto) {
 
-		Produto p = null;
-
-		try {
-			p = produtoService.createProduto(produto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return new ResponseEntity<Produto>(p, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Produto>(produtoService.createProduto(produto), HttpStatus.OK);
 
 	}
 
 	@PutMapping
 	public ResponseEntity<Produto> updateProduto(Produto produto) {
 
-		Produto p = null;
-
-		try {
-			p = produtoService.updateProduto(produto);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Produto>(p, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Produto>(p, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Produto>(produtoService.updateProduto(produto), HttpStatus.OK);
 
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> readProduto(@PathParam("id") String idProduto) {
-		
-		Produto p = null;
-		
-		try {
-			p = produtoService.readProduto(idProduto);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Produto>(p, HttpStatus.BAD_REQUEST);
-		}
-		
-		return new ResponseEntity<Produto>(p, HttpStatus.ACCEPTED);
-		
+
+		return new ResponseEntity<Produto>(produtoService.readProduto(idProduto), HttpStatus.OK);
+
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<ArrayList<Produto>> readProdutos() {
-		
+
+		// TODO: arrumar o readAll;
 		ArrayList<Produto> produtos = null;
-		
+
 		try {
 			produtos = produtoService.readAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<ArrayList<Produto>>(produtos, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		return new ResponseEntity<ArrayList<Produto>>(produtos, HttpStatus.ACCEPTED);
 	}
-	
+
 	@DeleteMapping
 	public ResponseEntity<Produto> deleteProduto(Produto produto) {
-		
-		Produto p = null;
-		
-		try {
-			p = produtoService.removeProduto(produto);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Produto>(p, HttpStatus.BAD_REQUEST);
-		}
-		
-		return new ResponseEntity<Produto>(p, HttpStatus.OK);
+
+		return new ResponseEntity<Produto>(produtoService.removeProduto(produto), HttpStatus.OK);
+
 	}
-	
 
 }

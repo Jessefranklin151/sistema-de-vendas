@@ -27,53 +27,28 @@ public class VendaController {
 	@PostMapping
 	public ResponseEntity<Venda> createVenda(Venda venda) {
 
-		Venda v = null;
-
-		try {
-			v = vendaService.createVenda(venda);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Venda>(v, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Venda>(v, HttpStatus.OK);
+		return new ResponseEntity<Venda>(vendaService.createVenda(venda), HttpStatus.OK);
 
 	}
 
 	@PutMapping
 	public ResponseEntity<Venda> updateVenda(Venda venda) {
 
-		Venda v = null;
-
-		try {
-			v = vendaService.updateVenda(venda);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Venda>(v, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Venda>(v, HttpStatus.OK);
+		return new ResponseEntity<Venda>(vendaService.updateVenda(venda), HttpStatus.OK);
 
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Venda> readVenda(@PathParam("id") String idVenda) {
 
-		Venda v = null;
+		return new ResponseEntity<Venda>(vendaService.readVenda(idVenda), HttpStatus.OK);
 
-		try {
-			v = vendaService.readVenda(idVenda);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Venda>(v, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Venda>(v, HttpStatus.OK);
 	}
 
 	@GetMapping
 	public ResponseEntity<ArrayList<Venda>> readAll() {
 
+		//TODO: arrumar o readAll;
 		ArrayList<Venda> vendas = null;
 
 		try {

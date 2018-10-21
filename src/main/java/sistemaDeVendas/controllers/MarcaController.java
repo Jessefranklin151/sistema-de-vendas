@@ -27,54 +27,28 @@ public class MarcaController {
 	@PostMapping
 	public ResponseEntity<Marca> createMarca(Marca marca) {
 
-		Marca m = null;
-
-		try {
-			m = marcaService.createMarca(marca);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Marca>(m, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Marca>(m, HttpStatus.OK);
+		return new ResponseEntity<Marca>(marcaService.createMarca(marca), HttpStatus.OK);
 
 	}
 
 	@PutMapping
 	public ResponseEntity<Marca> updateMarca(Marca marca) {
 
-		Marca p = null;
-
-		try {
-			p = marcaService.updateMarca(marca);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Marca>(p, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Marca>(p, HttpStatus.OK);
+		return new ResponseEntity<Marca>(marcaService.updateMarca(marca), HttpStatus.OK);
 
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Marca> readMarca(@PathParam("id") String idMarca) {
 
-		Marca p = null;
-
-		try {
-			p = marcaService.readMarca(idMarca);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Marca>(p, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Marca>(p, HttpStatus.OK);
+		return new ResponseEntity<Marca>(marcaService.readMarca(idMarca), HttpStatus.OK);
 
 	}
 
 	@GetMapping
 	public ResponseEntity<ArrayList<Marca>> readAll() {
 
+		// TODO:
 		ArrayList<Marca> marcas = null;
 
 		try {
@@ -91,16 +65,7 @@ public class MarcaController {
 	@DeleteMapping
 	public ResponseEntity<Marca> deleteMarca(Marca marca) {
 
-		Marca m = null;
-
-		try {
-			m = marcaService.removeMarca(marca);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Marca>(m, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Marca>(m, HttpStatus.OK);
+		return new ResponseEntity<Marca>(marcaService.removeMarca(marca), HttpStatus.OK);
 
 	}
 

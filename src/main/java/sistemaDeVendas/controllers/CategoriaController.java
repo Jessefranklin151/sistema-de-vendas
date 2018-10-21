@@ -27,54 +27,28 @@ public class CategoriaController {
 	@PostMapping
 	public ResponseEntity<Categoria> createCategoria(Categoria categoria) {
 
-		Categoria c = null;
-
-		try {
-			c = categoriaService.createCategoria(categoria);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Categoria>(c, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Categoria>(c, HttpStatus.OK);
+		return new ResponseEntity<Categoria>(categoriaService.createCategoria(categoria), HttpStatus.OK);
 
 	}
 
 	@PutMapping
 	public ResponseEntity<Categoria> updateCategoria(Categoria categoria) {
 
-		Categoria c = null;
-
-		try {
-			c = categoriaService.updateCategoria(categoria);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Categoria>(c, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Categoria>(c, HttpStatus.OK);
+		return new ResponseEntity<Categoria>(categoriaService.updateCategoria(categoria), HttpStatus.OK);
 
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> readCategoria(@PathParam("id") String idCategoria) {
 
-		Categoria c = null;
-
-		try {
-			c = categoriaService.readCategoria(idCategoria);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Categoria>(c, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Categoria>(c, HttpStatus.OK);
+		return new ResponseEntity<Categoria>(categoriaService.readCategoria(idCategoria), HttpStatus.OK);
 
 	}
 
 	@GetMapping
 	public ResponseEntity<ArrayList<Categoria>> readAll() {
 
+		// TODO: arrumar o ReadAll.
 		ArrayList<Categoria> categorias = null;
 
 		try {
@@ -91,16 +65,7 @@ public class CategoriaController {
 	@DeleteMapping
 	public ResponseEntity<Categoria> deleteCategoria(Categoria categoria) {
 
-		Categoria c = null;
-
-		try {
-			c = categoriaService.removeCategoria(categoria);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Categoria>(c, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Categoria>(c, HttpStatus.OK);
+		return new ResponseEntity<Categoria>(categoriaService.removeCategoria(categoria), HttpStatus.OK);
 
 	}
 

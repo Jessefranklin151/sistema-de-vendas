@@ -20,61 +20,35 @@ import sistemaDeVendas.services.FuncionarioService;
 @Controller
 @RequestMapping(value = "/funcionario")
 public class FuncionarioController {
-	
+
 	@Autowired
 	private FuncionarioService funcionarioService;
 
 	@PostMapping
 	private ResponseEntity<Funcionario> createFuncionario(Funcionario funcionario) {
 
-		Funcionario f = null;
-
-		try {
-			f = funcionarioService.createFuncionario(funcionario);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Funcionario>(f, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Funcionario>(f, HttpStatus.OK);
+		return new ResponseEntity<Funcionario>(funcionarioService.createFuncionario(funcionario), HttpStatus.OK);
 
 	}
 
 	@PutMapping
 	private ResponseEntity<Funcionario> updateFuncionario(Funcionario funcionario) {
 
-		Funcionario f = null;
-
-		try {
-			f = funcionarioService.updateFuncionario(funcionario);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Funcionario>(f, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Funcionario>(f, HttpStatus.OK);
+		return new ResponseEntity<Funcionario>(funcionarioService.updateFuncionario(funcionario), HttpStatus.OK);
 
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Funcionario> readFornecedor(@PathParam("id") String idFuncionario) {
 
-		Funcionario f = null;
-
-		try {
-			f = funcionarioService.readFuncionario(idFuncionario);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Funcionario>(f, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Funcionario>(f, HttpStatus.OK);
+		return new ResponseEntity<Funcionario>(funcionarioService.readFuncionario(idFuncionario), HttpStatus.OK);
 
 	}
 
 	@GetMapping
 	public ResponseEntity<ArrayList<Funcionario>> readAll() {
 
+		// TODO: arruamr o readAll;
 		ArrayList<Funcionario> funcionarios = null;
 
 		try {
@@ -87,21 +61,11 @@ public class FuncionarioController {
 		return new ResponseEntity<ArrayList<Funcionario>>(funcionarios, HttpStatus.OK);
 
 	}
-	
+
 	@DeleteMapping
 	private ResponseEntity<Funcionario> deleteFuncionario(Funcionario funcionario) {
 
-		Funcionario f = null;
+		return new ResponseEntity<Funcionario>(funcionarioService.removeFuncionario(funcionario), HttpStatus.OK);
 
-		
-		try {
-			f = funcionarioService.removeFuncionario(funcionario);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Funcionario>(f, HttpStatus.BAD_REQUEST);
-		}
-
-		return new ResponseEntity<Funcionario>(f, HttpStatus.OK);
-		
 	}
 }

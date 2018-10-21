@@ -50,21 +50,20 @@ public class App implements CommandLineRunner {
 		produtoService.createProduto(produto2);
 		
 		
-		
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 		pedidos.add(p1);
 		pedidos.add(p2);
 		
 		venda.setPedidos(pedidos);
 		
-		
+		//System.out.println("teste1");
 		
 		for (Venda v : vendaService.readAll()) {
 			for (Pedido pedido : v.getPedidos()) {
 				System.out.println(pedido.getProduto().getNome());
 			}
 		}
-		
+		//System.out.println("teste2");
 		
 		
 		Endereco endereco = new Endereco("rua das colheres", "mesa", Short.parseShort("1234"),"sala de jantar", "casa");
@@ -72,8 +71,10 @@ public class App implements CommandLineRunner {
 		clienteService.createCliente(c);
 		venda.setCliente(c);
 		
-		vendaService.createVenda(venda);
+		//System.out.println("teste3");
 		
+		vendaService.createVenda(venda);
+	
 	}
 
 }

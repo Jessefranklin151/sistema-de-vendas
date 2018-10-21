@@ -1,11 +1,17 @@
 package sistemaDeVendas.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sistemaDeVendas.domains.Marca;
+import sistemaDeVendas.exceptions.CriacaoInvalidaException;
+import sistemaDeVendas.exceptions.IdInvalidoException;
+import sistemaDeVendas.exceptions.NotFoundException;
+import sistemaDeVendas.exceptions.RemocaoInvalidaException;
+import sistemaDeVendas.exceptions.UpdateInvalidoException;
 import sistemaDeVendas.repositorys.MarcaRepository;
 
 @Service
@@ -15,23 +21,40 @@ public class MarcaService {
 	private MarcaRepository marcaRepository;
 
 	public Marca createMarca(Marca m) {
-		
+
+		if (m == null) {
+			throw new CriacaoInvalidaException("Marca");
+		}
+
 		return marcaRepository.save(m);
-		
+
 	}
 
 	public Marca updateMarca(Marca m) {
-		Marca marcaBase = readMarca(m.getId());
 
-		marcaBase.setFornecedor(m.getFornecedor());
-		marcaBase.setNome(m.getNome());
+		if (m == null || m.getId() != null) {
+			throw new UpdateInvalidoException("Marca");
+		}
 
-		return marcaRepository.save(marcaBase);
-		
+		return marcaRepository.save(m);
+
 	}
 
 	public Marca readMarca(String idMarca) {
-		return marcaRepository.findById(idMarca).get();
+		
+		if (idMarca == null) {
+			throw new IdInvalidoException("Id Marca");
+		}
+
+		Optional<Marca> m = marcaRepository.findById(idMarca);
+
+		m.orElseThrow(() -> (NotFoundException.build("Marca não encontrada.")));
+
+//		if(!m.isPresent()) {
+//			throw new MarcaNaoEncontradaException();
+//		}
+
+		return m.get();
 	}
 
 	public ArrayList<Marca> readAll() {
@@ -39,6 +62,11 @@ public class MarcaService {
 	}
 
 	public Marca removeMarca(Marca m) {
+		
+		if(m == null || m.getId() == null) {
+			throw new RemocaoInvalidaException("Marca");
+		}
+		
 		marcaRepository.deleteById(m.getId());
 		return m;
 	}

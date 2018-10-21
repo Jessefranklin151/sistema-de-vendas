@@ -10,6 +10,7 @@ public class Produto {
 	@Id
 	private String id;
 	private String nome;
+	
 	@DBRef
 	private Marca marca;
 	

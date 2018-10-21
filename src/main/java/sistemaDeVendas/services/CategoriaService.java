@@ -1,14 +1,17 @@
 package sistemaDeVendas.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sistemaDeVendas.domains.Categoria;
-import sistemaDeVendas.exceptions.CategoriaInvalidaException;
-import sistemaDeVendas.exceptions.CategoriaNaoEncontradaException;
-import sistemaDeVendas.exceptions.NovaCategoriaInvalidaException;
+import sistemaDeVendas.exceptions.CriacaoInvalidaException;
+import sistemaDeVendas.exceptions.IdInvalidoException;
+import sistemaDeVendas.exceptions.NotFoundException;
+import sistemaDeVendas.exceptions.RemocaoInvalidaException;
+import sistemaDeVendas.exceptions.UpdateInvalidoException;
 import sistemaDeVendas.repositorys.CategoriaRepository;
 
 @Service
@@ -17,36 +20,41 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
-	public Categoria createCategoria(Categoria c) throws CategoriaInvalidaException {
-		
-		if (c.getId() != null && c.getNome() != null) {
-			return categoriaRepository.save(c);
+	public Categoria createCategoria(Categoria c) {
+
+		if (c == null || c.getId() != null) {
+			throw new CriacaoInvalidaException("Categoria");
 		}
-		
-		throw new CategoriaInvalidaException();
-		
+
+		return categoriaRepository.save(c);
+
+	}
+
+	public Categoria updateCategoria(Categoria c)  {
+
+		if (c == null || c.getId() == null) {
+			throw new UpdateInvalidoException("Categoria");
+		}
+
+		return categoriaRepository.save(c);
 		
 	}
 
-	public Categoria updateCategoria(Categoria c) throws NovaCategoriaInvalidaException, CategoriaNaoEncontradaException {
+	public Categoria readCategoria(String idCategoria)  {
 		
-		if (!(c.getId() != null && c.getNome() != null)) {
-			throw new NovaCategoriaInvalidaException();
+		if (idCategoria == null) {
+			throw new IdInvalidoException("Categoria");
 		}
+
+		Optional<Categoria> c = categoriaRepository.findById(idCategoria);
+
+//		if (!c.isPresent()) {
+//			throw new NotFoundException("Categoria não encontrada.");
+//		}
 		
-		Categoria categoriaBase = readCategoria(c.getId());
+		return c.orElseThrow(() -> (NotFoundException.build("Categoria não encontrada.")));
 
-		categoriaBase.setNome(c.getNome());
-
-		return categoriaRepository.save(categoriaBase);
-	}
-
-	public Categoria readCategoria(String idCategoria) throws CategoriaNaoEncontradaException {
-		if (!categoriaRepository.findById(idCategoria).isPresent()) {
-			throw new CategoriaNaoEncontradaException();
-		}
-		
-		return categoriaRepository.findById(idCategoria).get();
+		// return c.get();
 	}
 
 	public ArrayList<Categoria> readAll() {
@@ -54,6 +62,11 @@ public class CategoriaService {
 	}
 
 	public Categoria removeCategoria(Categoria c) {
+
+		if (c == null || c.getId() == null) {
+			throw new RemocaoInvalidaException("Categoria");
+		}
+
 		categoriaRepository.deleteById(c.getId());
 		return c;
 	}
