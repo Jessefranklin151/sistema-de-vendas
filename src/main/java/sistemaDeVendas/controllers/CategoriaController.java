@@ -39,7 +39,7 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> readCategoria(@PathParam("id") String idCategoria) {
+	public ResponseEntity<Categoria> readCategoria(@PathVariable("id") String idCategoria) {
 
 		return new ResponseEntity<Categoria>(categoriaService.readCategoria(idCategoria), HttpStatus.OK);
 
